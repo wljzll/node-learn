@@ -1,10 +1,6 @@
 // process 进程 
 
-console.log(process.version);
-
-// version: 'v14.17.3' node的版本号
-
-console.log(process.platform); 
+// process.version: 'v14.17.3' node的版本号 
 // process.platform        win32 代表的是系统 每个系统肯定有自己的标识 来区分系统
 // process.kill()          杀死进程
 // process.exit()          退出进程
