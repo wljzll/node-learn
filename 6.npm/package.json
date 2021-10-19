@@ -1,0 +1,31 @@
+{
+  "name": "my-zf-pack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "bin": {
+    "computed": "./bin/computed.js"
+  },
+  "scripts": {
+    "computed": "node ./bin/computed.js",
+    "mime": "mime"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "webpack": "^5.58.2"
+  },
+  "peerDependencies": {
+    "jquery": "^3.6.0"
+  },
+  "bundleDependencies": [
+    "jquery"
+  ],
+  "dependencies": {
+    "jquery": "^3.6.0",
+    "mime": "^2.5.2"
+  },
+  "optionalDependencies": {
+    "jquery": "^3.6.0"
+  }
+}

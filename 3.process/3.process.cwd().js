@@ -6,5 +6,5 @@ console.log(process.cwd()); // 用coder runner运行  [d:\project\node-learn]
 // 这个cwd()是可变的 看命令在哪里执行 在哪执行工作目录就是谁
 
 
-// __dirname: 当前文件所在的文件夹 此路径是不会发生变化的 所以在操作文件时 为了防止有歧义：__dirname + 文件名
+// __dirname: 当前文件所在的文件夹(上一级) 此路径是不会发生变化的 所以在操作文件时 为了防止有歧义：__dirname + 文件名
 console.log(__dirname);
