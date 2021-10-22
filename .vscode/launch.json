@@ -8,10 +8,7 @@
             "type": "pwa-node",
             "request": "launch",
             "name": "Launch Program",
-            // "skipFiles": [
-            //     "<node_internals>/**"
-            // ],
-            "program": "${workspaceFolder}\\5.module\\useA.js"
+            "program": "${workspaceFolder}\\10.fs\\3.readStream.js"
         }
     ]
 }
