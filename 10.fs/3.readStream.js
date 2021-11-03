@@ -6,7 +6,7 @@ const ReadStrem = require('./ReadStream')
 
 // 文件流是文件操作中自己实现的流 文件流是继承于stream的, 底层实现用的是 fs.open() fs.read()
 
-const rs = fs.createReadStream(path.resolve(__dirname, 'note.md'), {
+const rs = new ReadStrem(path.resolve(__dirname, 'note.md'), {
     flags: 'r', // r读取 fs.open()用
     encoding:null, // 默认读取出来的是buffer类型
     autoClose: true, // 读取完毕后需要关闭流 fs.close
@@ -26,8 +26,8 @@ rs.on('close', function() {
 })
 
 rs.on('data', function (data) { // 如果绑定了data事件, 会不停的触发data事件 将内部数据传递出来
-   console.log(data);
-   rs.pause() // 不要继续触发data事件, 暂停读取文件
+   console.log(data, '=================');
+//    rs.pause() // 不要继续触发data事件, 暂停读取文件
    arr.push(data)
 })
 

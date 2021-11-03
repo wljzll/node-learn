@@ -90,4 +90,4 @@ new Promise(function(resolve){
     console.log('script end');
 })
 
-// script start async1 start async2 promise1 script end setTimeout
+// script start async1 start async2 promise1 OK script end setTimeout

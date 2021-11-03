@@ -65,7 +65,7 @@ class ReadStream extends EventEmitter {
       (err, bytesRead) => {
         if (bytesRead) {
           this.offset += bytesRead;
-          this.emit("data", buffer);
+          this.emit("data", buffer.slice(0, bytesRead.length));
           if (this.flowing) {
             this.read();
           }

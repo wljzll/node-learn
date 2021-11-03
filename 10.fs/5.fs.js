@@ -33,4 +33,4 @@ ws.on("drain", function () {
   console.log("drain");
 });
 
-// ws.end(); // 表示写入完成 可以写入一些最终的内容
+// ws.end(); // 表示写入完成 可以写入一些最终的内容 并关闭文件  = ws.write() + fs.close()

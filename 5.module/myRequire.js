@@ -21,12 +21,14 @@ Module._extensions = {
     // 1. 读取JS文件内容
     let content = fs.readFileSync(module.id, "utf-8");
     content = Module.warpper[0] + content + Module.warpper[1];
+
     // 2. 使用vm.runInThisContext()执行JS内容
     let fn = vm.runInThisContext(content);
 
     let exports = module.exports;
     let dirname = path.dirname(module.id); // d:\project\node-learn\5.module
     console.log(dirname);
+    // 3. 传入参数执行fn 文件执行完毕后 module.exports上就有了需要导出的变量
     fn.call(exports, exports, myRequire, module, module.id, dirname);
     console.log(fn.toString());
   },
@@ -36,17 +38,22 @@ Module._extensions = {
   },
 };
 
+/**
+ * 
+ * @param {*} filename 文件名 
+ * @returns 
+ */
 Module._resolveFilename = function (filename) {
   let absPath = path.resolve(__dirname, filename); // 获取文件的绝对路径 d:\project\node-learn\5.module\a
-  let isExists = fs.existsSync(absPath); // 判断文件是否存在 由于为传入文件名 所以时不存在的
+  let isExists = fs.existsSync(absPath); // 判断文件是否存在 由于未传入文件后缀 所以是不存在的
   if (isExists) {
     return absPath;
   } else {
     let keys = Object.keys(Module._extensions); // [ '.js', '.json' ]
     for (let i = 0; i < keys.length; i++) {
-      let newPath = absPath + keys[i];
-      let flag = fs.existsSync(newPath);
-      if (flag) {
+      let newPath = absPath + keys[i]; // 尝试添加后缀
+      let flag = fs.existsSync(newPath); // 验证添加后缀后文件是否存在
+      if (flag) { // 存在 则返回绝对路径
         return newPath;
       }
     }
@@ -54,7 +61,7 @@ Module._resolveFilename = function (filename) {
   throw new Error("module not exists");
 };
 Module.prototype.load = function () {
-  let extName = path.extname(this.id); // 获取文件后缀名 .json
+  let extName = path.extname(this.id); // 获取文件后缀名 .js
   Module._extensions[extName](this); // 调用对应的方法加载文件
 };
 
@@ -74,3 +81,7 @@ function myRequire(filename) {
 }
 let result = myRequire("./b");
 console.log(result);
+
+// myRequire
+// Module._resolveFilename(filename) 通过判断是否有文件后缀或尝试添加后缀获取文件的绝对路径
+// module.load()调用Module._extensions[extName](this)加载不同类型的文件
