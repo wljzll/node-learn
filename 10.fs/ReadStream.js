@@ -48,8 +48,8 @@ class ReadStream extends EventEmitter {
   }
   // fs.read()读取文件
   read() {
-    if (typeof this.fd !== "number") {
-      return this.once("open", () => this.read());
+    if (typeof this.fd !== "number") { 
+      return this.once("open", () => this.read()); // 注册一次性open事件 当文件确定打开完成后, 这里也会触发一次 进而执行read()操作
     }
     // 需要根据用户提供的 start 和 end 来进行读取 计算每次读取的长度 只有当最后一次读取的长度小于 highWaterMark时,才会用到计算出的长度
     let howMuchToRead = this.end

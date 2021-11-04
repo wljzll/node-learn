@@ -12,12 +12,13 @@ const rs = new ReadStrem(path.resolve(__dirname, 'note.md'), {
     autoClose: true, // 读取完毕后需要关闭流 fs.close
     emitClose: true, // 读取完毕后要触发close事件 emit('close')
     start: 0,
-    end: 5, // start end 标识就是读取从索引为 0-5的内容
+    end: 9, // start end 标识就是读取从索引为 0-5字节之间的内容
     highWaterMark: 2 // 每次读取几个
 })
 
 rs.on('open', function (fd) { // 打开文件后会传递fd属性 open是文件流特有的
     console.log(fd);
+    console.log('这里也触发了一次');
 })
 
 const arr = [];
